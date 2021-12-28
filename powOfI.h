@@ -44,4 +44,19 @@ namespace power_of_I
 	{
 		return power_of_I::_inner::_PowOfI<N, V>()(value);
 	}
+	
+	// For c++17 and up use this instead
+	// Holy shit that's way easier now and is possibly more efficent (~19 lines of -o0 assembly less)
+	/*
+	template<unsigned int N, typename VT>
+	constexpr VT powOfI(VT x) noexcept
+	{
+    		if constexpr(N == 0)
+        		return 1;
+    		else if constexpr(N == 1)
+        		return x;
+    		else
+        		return x * powOfI<N-1>(x);
+	}
+	//*/
 };
